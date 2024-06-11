@@ -11,21 +11,15 @@ public class LoginResponse {
     return status;
   }
 
-  public LoginResponse setStatus(String status) {
+  public void setStatus(String status) {
     this.status = status;
-    return this;
   }
 
   public String getMessage() {
     return message;
   }
 
-  public LoginResponse setMessage(String message) {
+  public void setMessage(String message) {
     this.message = message;
-    return this;
-  }
-
-  public LoginResponse getInstance() {
-    return new LoginResponse();
   }
 }
