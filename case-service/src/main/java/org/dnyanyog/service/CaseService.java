@@ -3,10 +3,16 @@ package org.dnyanyog.service;
 import org.dnyanyog.dto.CaseRequest;
 import org.dnyanyog.dto.CaseResponse;
 
+import jakarta.validation.Valid;
+
 public interface CaseService {
-  public CaseResponse addCases(CaseRequest caseRequest);
+  public CaseResponse addCase(@Valid CaseRequest request) throws Exception;
 
-  public CaseResponse searchCases(long caseNumber);
+  public CaseResponse updateCase(String case_id, CaseRequest request);
 
-  public String deleteCases(long patientId);
+  public CaseResponse getSingleCase(String patient_id);
+
+  public CaseResponse deleteCase(String case_id);
+
+  public CaseResponse getCase(String case_id);
 }

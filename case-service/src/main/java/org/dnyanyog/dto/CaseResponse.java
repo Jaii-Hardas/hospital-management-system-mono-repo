@@ -2,50 +2,64 @@ package org.dnyanyog.dto;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 @Component
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CaseResponse {
-  private String patientNameInEnglish;
-  private String patientNameInMarathi;
-  private long caseNumber;
-  private String examinationDate;
+	
+  private String patientNameEnglish;
+  private String patientId;
+  private String case_number;
+  private String examination_date;
   private String symptoms;
   private String prescription;
   private String status;
   private String message;
 
-  public String getPatientNameInEnglish() {
-    return patientNameInEnglish;
+  public String getStatus() {
+    return status;
   }
 
-  public void setPatientNameInEnglish(String patientNameInEnglish) {
-    this.patientNameInEnglish = patientNameInEnglish;
+  public void setStatus(String status) {
+    this.status = status;
   }
 
-  public String getPatientNameInMarathi() {
-    return patientNameInMarathi;
+  public String getMessage() {
+    return message;
   }
 
-  public void setPatientNameInMarathi(String patientNameInMarathi) {
-    this.patientNameInMarathi = patientNameInMarathi;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
-  public long getCaseNumber() {
-    return caseNumber;
+  public String getPatientNameEnglish() {
+    return patientNameEnglish;
   }
 
-  public void setCaseNumber(long caseNumber) {
-    this.caseNumber = caseNumber;
+  public void setPatientNameEnglish(String patientNameEnglish) {
+    this.patientNameEnglish = patientNameEnglish;
   }
 
-  public String getExaminationDate() {
-    return examinationDate;
+  public String getPatientId() {
+    return patientId;
   }
 
-  public void setExaminationDate(String examinationDate) {
-    this.examinationDate = examinationDate;
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
+  }
+
+  public String getCase_number() {
+    return case_number;
+  }
+
+  public void setCase_number(String case_number) {
+    this.case_number = case_number;
+  }
+
+  public String getExamination_date() {
+    return examination_date;
+  }
+
+  public void setExamination_date(String examination_date) {
+    this.examination_date = examination_date;
   }
 
   public String getSymptoms() {
@@ -62,21 +76,5 @@ public class CaseResponse {
 
   public void setPrescription(String prescription) {
     this.prescription = prescription;
-  }
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
   }
 }
