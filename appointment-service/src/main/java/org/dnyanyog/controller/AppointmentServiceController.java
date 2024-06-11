@@ -2,7 +2,7 @@ package org.dnyanyog.controller;
 
 import org.dnyanyog.dto.AppointmentRequest;
 import org.dnyanyog.dto.AppointmentResponse;
-import org.dnyanyog.services.AppointmentManagementServiceImp;
+import org.dnyanyog.services.AppointmentServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AppointmentManagementController {
-
-  @Autowired private AppointmentManagementServiceImp appointmentService;
+public class AppointmentServiceController {
+  @Autowired AppointmentServiceImp appointmentService;
 
   @PostMapping(
       path = "/api/v1/appointment/add",
@@ -25,19 +24,26 @@ public class AppointmentManagementController {
     return appointmentService.addAppointment(appointmentRequest);
   }
 
-  @PostMapping("/api/v1/appointment/{appointment_id}")
+  @PostMapping(path = "/api/v1/appointment/{appointment_id}")
   public AppointmentResponse updateAppointment(
-      @PathVariable long appointment_id, @RequestBody AppointmentRequest request) {
+      @PathVariable String appointment_id, @RequestBody AppointmentRequest request) {
     return appointmentService.updateAppointment(appointment_id, request);
   }
 
+  @GetMapping(path = "/api/v1/appointment/patient/{patient_id}")
+  public AppointmentResponse getSingleAppointment(@PathVariable String patient_id) {
+
+    return appointmentService.getSingleAppointment(patient_id);
+  }
+
   @GetMapping(path = "/api/v1/appointment/{appointment_id}")
-  public AppointmentResponse searchAppointment(@PathVariable long appointment_id) {
-    return appointmentService.searchAppointment(appointment_id);
+  public AppointmentResponse getAppointment(@PathVariable String appointment_id) {
+
+    return appointmentService.getAppointment(appointment_id);
   }
 
   @DeleteMapping(path = "/api/v1/appointment/{appointment_id}")
-  public AppointmentResponse deleteAppointment(@PathVariable long appointment_id) {
+  public AppointmentResponse deleteAppointment(@PathVariable String appointment_id) {
     return appointmentService.deleteAppointment(appointment_id);
   }
 }
