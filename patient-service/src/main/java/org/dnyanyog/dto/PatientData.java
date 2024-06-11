@@ -1,6 +1,5 @@
 package org.dnyanyog.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
@@ -16,42 +15,49 @@ public class PatientData {
 
   @NotNull(message = "Username is mandatory")
   @NotBlank(message = "Username should not be blank")
-  @Size(max = 50, message = "Username length should be at most 20 characters")
-  private String patient_name_english;
+  @Size(max = 50, message = "Username length should be at most 50 characters")
+  private String patientNameEnglish;
 
   @NotNull(message = "Username in Marathi is mandatory")
   @NotBlank(message = "Username in Marathi should not be blank")
-  @Size(max = 50, message = "Username in Marathi length should be at most 20 characters")
+  @Size(max = 50, message = "Username in Marathi length should be at most 50 characters")
+  @Pattern(
+      regexp = "\"([अ-ज्ञ]\"",
+      message = "Username in Marathi should only contain Marathi characters")
   private String patient_name_marathi;
 
-  @NotNull(message = "Mobile_Number is mandatory")
-  private String mobile_number;
+  @Pattern(
+      regexp = "^\\d{10}$",
+      message = "Invalid mobile number format. It should be a 10-digit number.")
+  private String mobile;
 
   @NotNull(message = "Gender is mandatory")
-  @NotBlank(message = "Gender should not be blank")
+  @Pattern(
+      regexp = "Male|Female|Other",
+      message = "Gender should be either 'Male', 'Female' or 'Other'")
   private String gender;
 
-  @NotNull(message = "Birth_Date is mandatory")
+  @NotNull(message = "Birth date is mandatory")
   @PastOrPresent(message = "Birth date cannot be in the future")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private String birth_date;
 
-  @NotNull(message = "First_Examination date is mandatory")
-  @PastOrPresent(message = "First_examination date cannot be in the future")
+  @NotNull(message = "First examination date is mandatory")
+  @PastOrPresent(message = "First examination date cannot be in the future")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private String first_examination_date;
 
   @NotNull(message = "Address is mandatory")
   @NotBlank(message = "Address should not be blank")
-  @Size(max = 50, message = "Address length should be at most 50 characters")
+  @Size(max = 255, message = "Address length should be at most 255 characters")
   private String address;
 
-  public String getPatient_name_english() {
-    return patient_name_english;
+  public String getPatientNameEnglish() {
+    return patientNameEnglish;
   }
 
-  public void setPatient_name_english(String patient_name_english) {
-    this.patient_name_english = patient_name_english;
+  public void setPatientNameEnglish(String patientNameEnglish) {
+    this.patientNameEnglish = patientNameEnglish;
   }
 
   public String getPatient_name_marathi() {
@@ -62,12 +68,12 @@ public class PatientData {
     this.patient_name_marathi = patient_name_marathi;
   }
 
-  public String getMobile_number() {
-    return mobile_number;
+  public String getMobile() {
+    return mobile;
   }
 
-  public void setMobile_number(String mobile_number) {
-    this.mobile_number = mobile_number;
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
   }
 
   public String getGender() {
